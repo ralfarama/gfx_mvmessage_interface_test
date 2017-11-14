@@ -18,11 +18,33 @@ bw_movingsign::bw_movingsign(void) : Adafruit_GFX(7, 60) {
   int column_strobe_interval = 500;
 }
 
+#ifndef _swap_int16_t
+#define _swap_int16_t(a, b) { int16_t t = a; a = b; b = t; }
+#endif
+
 void bw_movingsign::drawPixel(int16_t x, int16_t y, uint16_t color) {
-  if ( color != 0 ) {
-    drawbuffer[x] |= ( 1 << ( y & 0x07 ) );
-  } else {
-    this->drawbuffer[x] &= ( 0x7f ^ ( 1 << ( y & 0x07 ) ) );
+
+  switch (getRotation()) {
+  case 1:
+    _swap_int16_t(x, y);
+    x = 60 - x - 1;
+    break;
+  case 2:
+    x = 60 - x - 1;
+    y = 7 - y - 1;
+    break;
+  case 3:
+    _swap_int16_t(x, y);
+    y = 7 - y - 1;
+    break;
+  }
+
+  if ( x >= 0 && x <= 59 && y >= 0 && y <= 6 ) {
+    if ( color != 0 ) {
+      drawbuffer[x] |= ( 1 << ( y & 0x07 ) );
+    } else {
+      this->drawbuffer[x] &= ( 0x7f ^ ( 1 << ( y & 0x07 ) ) );
+    }
   }
 }
 
@@ -99,7 +121,7 @@ void bw_movingsign::set_matrix_bank_register(int bank,int reg_value) {
   digitalWrite(PIN_DBUS0,HIGH);
   // set data bus values
   for ( int i = 0; i < 7; i++ ) {
-    int portnum = i + 3;
+    int portnum = 9 - i;
     int portbit;
 
     if ( reg_value & ( 1 << i ) ) {
@@ -245,8 +267,6 @@ void bw_movingsign::writeDisplay(void) {
     set_matrix_bank_register(1,displaybuffer[c+15]);
     set_matrix_bank_register(2,displaybuffer[c+30]);
     set_matrix_bank_register(3,displaybuffer[c+45]);
-    // int c_banknum = c / 15;
-    // int c_bankcol = c % 15;
     int c_latchbit = c & 7;
     int c_latchnum = ( c & 8 ) >> 3;
 

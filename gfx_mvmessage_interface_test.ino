@@ -72,38 +72,38 @@ void adafruit_matrix8x8_test_loop() {
   bwms.clear();
   bwms.drawBitmap(0, 0, smile_bmp, 8, 8, LED_ON);
 //  bwms.writeDisplay();
-  delay(500);
+//  delay(500);
 
   bwms.clear();
   bwms.drawBitmap(0, 0, neutral_bmp, 8, 8, LED_ON);
 //  bwms.writeDisplay();
-  delay(500);
+//  delay(500);
 
   bwms.clear();
   bwms.drawBitmap(0, 0, frown_bmp, 8, 8, LED_ON);
 //  bwms.writeDisplay();
-  delay(500);
+//  delay(500);
 
   bwms.clear();      // clear display
   bwms.drawPixel(0, 0, LED_ON);  
 //  bwms.writeDisplay();  // write the changes we just made to the display
-  delay(500);
+//  delay(500);
 
   bwms.clear();
   bwms.drawLine(0,0, 7,7, LED_ON);
 //  bwms.writeDisplay();  // write the changes we just made to the display
-  delay(500);
+//  delay(500);
 
   bwms.clear();
   bwms.drawRect(0,0, 8,8, LED_ON);
   bwms.fillRect(2,2, 4,4, LED_ON);
 //  bwms.writeDisplay();  // write the changes we just made to the display
-  delay(500);
+//  delay(500);
 
   bwms.clear();
   bwms.drawCircle(3,3, 3, LED_ON);
 //  bwms.writeDisplay();  // write the changes we just made to the display
-  delay(500);
+//  delay(500);
 
   bwms.setTextSize(1);
   bwms.setTextWrap(false);  // we dont want text to wrap so it scrolls nicely
@@ -111,26 +111,26 @@ void adafruit_matrix8x8_test_loop() {
   // start with static text display
   bwms.clear();
   bwms.setCursor(0,0);
-  bwms.print("Hello");
+  bwms.print("1234567890Hello1234567890");
 //  bwms.writeDisplay();
   delay(500);
   for (int8_t x=0; x>=-36; x--) {
-    bwms.set_autobufferupdate(0);
+    // bwms.set_autobufferupdate(0);
     bwms.clear();
     bwms.setCursor(x,0);
-    bwms.print("Hello");
-    bwms.set_autobufferupdate(1);
-//    bwms.writeDisplay();
-    delay(400);
+    bwms.print("Hellowacky");
+    // bwms.writeDisplay();
+    delay(100);
+    //bwms.set_autobufferupdate(1);
   }
   bwms.setRotation(3);
   for (int8_t x=7; x>=-36; x--) {
-    bwms.set_autobufferupdate(0);
+    // bwms.set_autobufferupdate(0);
     bwms.clear();
     bwms.setCursor(x,0);
     bwms.print("World");
 //    bwms.writeDisplay();
-    bwms.set_autobufferupdate(1);
+    // bwms.set_autobufferupdate(1);
     delay(100);
   }
   bwms.setRotation(0);  
