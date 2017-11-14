@@ -6,7 +6,7 @@
 #include "Adafruit_GFX.h"
 #include "bw_movingsign.h"
 
-bw_movingsign::bw_movingsign(void) : Adafruit_GFX(7, 60) {
+bw_movingsign::bw_movingsign(void) : Adafruit_GFX(60, 7) {
   byte drawbuffer[] = {
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
